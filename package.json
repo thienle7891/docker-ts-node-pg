@@ -1,0 +1,30 @@
+{
+  "name": "app-cua-tao",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "thienlp",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && yarn dev",
+    "start-dev": "nodemon --exec ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.12",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20",
+    "zod": "^3.23.8"
+  }
+}
