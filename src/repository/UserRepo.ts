@@ -50,7 +50,6 @@ export class UserRepo implements UserRepoType {
       if (!delUser) {
         throw new Error("Note not found!");
       }
-
       await delUser.remove();
     } catch (error) {
       throw new Error("Failed to create note!");

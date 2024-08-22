@@ -1,4 +1,5 @@
 import Database from "./config/database";
+import StoreRouter from "./router/StoreRouter";
 import UserRouter from "./router/UserRouter";
 import express, { Application, Request, Response } from "express";
 
@@ -27,6 +28,7 @@ class App {
       res.send("Hello World!");
     });
     this.app.use("/api/v1/user", UserRouter);
+    this.app.use("/api/v1/store", StoreRouter);
   }
 }
 

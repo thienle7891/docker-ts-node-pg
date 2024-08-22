@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { User } from "../model/User";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
+import { Store } from "../model/Store";
 
 dotenv.config();
 
@@ -28,7 +29,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       type: "postgres",
-      entities: [User],
+      entities: [Store, User],
       synchronize: true,
       logging: false,
     });

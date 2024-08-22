@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+} from "typeorm";
+import { Store } from "./Store";
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -9,4 +16,7 @@ export class User extends BaseEntity {
 
   @Column()
   password!: string;
+
+  @ManyToOne(() => Store, (store) => store.store_id)
+  store_id!: Store;
 }
