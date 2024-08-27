@@ -17,3 +17,5 @@ dist/
 
 # Ignore test coverage reports
 build/
+
+yarn.lock

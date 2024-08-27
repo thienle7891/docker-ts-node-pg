@@ -6,9 +6,9 @@ services:
     image: node_app
     ports:
       - 8888:8888
-    # volumes:
-    #   - ./:/usr/src/app
-    #   - /usr/src/app/node_modules
+    volumes:
+      - ./:/usr/src/app
+        #   - /usr/src/app/node_modules
     depends_on:
       - db
     networks:

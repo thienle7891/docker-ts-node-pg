@@ -6,7 +6,6 @@ import { Store } from "../model/Store";
 class StoreController {
   async create(req: Request, res: Response) {
     try {
-      console.log(1234563453423);
       const { store_name: storeName } = req.body;
       const store = new Store();
       store.store_name = storeName;

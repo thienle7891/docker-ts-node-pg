@@ -1,12 +1,10 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { User } from "../model/User";
-import { UserRepo } from "../repository/UserRepo";
 
 class UserController {
   async create(req: Request, res: Response) {
     try {
       const { username, password } = req.body;
-      console.log(132);
       const user = new User();
       user.username = username;
       user.password = password;
