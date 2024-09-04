@@ -14,7 +14,7 @@ export class StoreRepo implements StoreRepoType {
       const { store_name: storeName } = store;
       const newStore = new Store();
       newStore.store_name = storeName;
-      newStore.user_ids = [];
+      newStore.users = [];
       await newStore.save();
     } catch (error) {
       throw new Error("Error saving user");

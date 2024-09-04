@@ -17,6 +17,6 @@ export class Store extends BaseEntity {
   @Column()
   password!: string;
 
-  @OneToMany(() => User, (user) => user.user_id)
-  user_ids!: User[];
+  @OneToMany(() => User, (user) => user.store)
+  users!: User[];
 }

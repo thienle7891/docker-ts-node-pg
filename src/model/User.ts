@@ -4,6 +4,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   BaseEntity,
+  JoinTable,
 } from "typeorm";
 import { Store } from "./Store";
 @Entity()
@@ -17,6 +18,6 @@ export class User extends BaseEntity {
   @Column()
   password!: string;
 
-  @ManyToOne(() => Store, (store) => store.store_id)
-  store_id!: Store;
+  @ManyToOne(() => Store, (store) => store.users)
+  store!: Store;
 }

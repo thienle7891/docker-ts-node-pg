@@ -22,25 +22,28 @@ class Database {
   }
 
   private async connectToPostgreSQL() {
-    this.dataSource = new DataSource({
-      database: this.POSTGRES_DB,
-      username: this.POSTGRES_USER,
-      password: this.POSTGRES_PASSWORD,
-      host: this.POSTGRES_HOST,
-      port: this.POSTGRES_PORT,
-      type: "postgres",
-      entities: [Store, User],
-      synchronize: true,
-      logging: false,
-    });
-    this.dataSource
-      .initialize()
-      .then(() => {
-        console.log("Success");
-      })
-      .catch(() => {
-        console.log("Error");
+    (async () => {
+      this.dataSource = new DataSource({
+        database: this.POSTGRES_DB,
+        username: this.POSTGRES_USER,
+        password: this.POSTGRES_PASSWORD,
+        host: this.POSTGRES_HOST,
+        port: this.POSTGRES_PORT,
+        type: "postgres",
+        entities: [],
+        synchronize: true,
+        logging: false,
+        migrations: ["src/migrations/*.ts"],
       });
+      this.dataSource
+        .initialize()
+        .then(() => {
+          console.log("Success");
+        })
+        .catch(() => {
+          console.log("Error");
+        });
+    })();
   }
 }
 

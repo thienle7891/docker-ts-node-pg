@@ -14,7 +14,7 @@ class StoreRoutes extends BaseRoutes {
       UserController.update
     );
     this.router.delete("/:id", UserController.delete);
-    this.router.get("", UserController.findAll);
+    this.router.get("", StoreController.findAll);
     this.router.get("/:id", UserController.findById);
   }
 }

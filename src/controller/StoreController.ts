@@ -2,17 +2,20 @@ import { Request, Response } from "express";
 import { User } from "../model/User";
 import { UserRepo } from "../repository/UserRepo";
 import { Store } from "../model/Store";
+import { genPasswordHash } from "../helper";
 
 class StoreController {
   async create(req: Request, res: Response) {
     try {
-      const { store_name: storeName } = req.body;
+      const { store_name: storeName, password } = req.body;
       const store = new Store();
       store.store_name = storeName;
+      store.password = await genPasswordHash(password);
+      store.users = [];
       await store.save();
-      res.status(200).json({ message: "User created" });
+      res.status(200).json({ message: "Store created" });
     } catch (error) {
-      res.status(500).json({ message: "Error creating user" });
+      res.status(400).json({ message: "Error creating store" });
     }
   }
 
@@ -62,16 +65,16 @@ class StoreController {
 
   async findAll(req: Request, res: Response) {
     try {
-      const new_note = await new UserRepo().retrieveAll();
+      const stores = await Store.find();
 
       res.status(200).json({
-        status: "Ok!",
+        success: true,
         message: "Successfully fetched all user data!",
-        data: new_note,
+        data: stores,
       });
     } catch (err) {
-      res.status(500).json({
-        status: "Internal Server Error!",
+      res.status(400).json({
+        success: false,
         message: "Internal Server Error!",
       });
     }

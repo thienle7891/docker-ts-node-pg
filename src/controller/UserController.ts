@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
 import { User } from "../model/User";
+import { genPasswordHash } from "../helper";
 
 class UserController {
   async create(req: Request, res: Response) {
     try {
-      const { username, password } = req.body;
+      const { username, password, store_id: storeId } = req.body;
       const user = new User();
       user.username = username;
-      user.password = password;
+      user.password = await genPasswordHash(password);
+      user.store = storeId;
       await user.save();
       res.status(200).json({ success: true, message: "User created" });
     } catch (error) {
@@ -65,7 +67,11 @@ class UserController {
 
   async findAll(req: Request, res: Response) {
     try {
-      const users = await User.find();
+      const users = await User.find({
+        relations: {
+          store: true,
+        },
+      });
       res.status(200).json({
         success: true,
         message: "Successfully fetched all user data!",
